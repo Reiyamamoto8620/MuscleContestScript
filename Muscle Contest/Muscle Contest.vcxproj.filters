@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Camera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayScene.cpp">
+      <Filter>Scene\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultScene.cpp">
+      <Filter>Scene\Reslt</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Scene\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSControll.cpp">
+      <Filter>FPSControll</Filter>
+    </ClCompile>
+    <ClCompile Include="HitKeyCheck.cpp">
+      <Filter>HitKeyCheck</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreRanking.cpp">
+      <Filter>ScoreRanking</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerModel.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCManager.cpp">
+      <Filter>NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCModel.cpp">
+      <Filter>NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterState.cpp">
+      <Filter>CharacterState</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCInput.cpp">
+      <Filter>NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreManager.cpp">
+      <Filter>Score</Filter>
+    </ClCompile>
+    <ClCompile Include="Score.cpp">
+      <Filter>Score</Filter>
+    </ClCompile>
+    <ClCompile Include="MapManager.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="LightManager.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundMusic.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundEffect.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaySceneManager.cpp">
+      <Filter>Scene\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleSceneManager.cpp">
+      <Filter>Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultSceneManager.cpp">
+      <Filter>Scene\Reslt</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="Camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScene.h">
+      <Filter>Scene\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultScene.h">
+      <Filter>Scene\Reslt</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Scene\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSControll.h">
+      <Filter>FPSControll</Filter>
+    </ClInclude>
+    <ClInclude Include="HitKeyCheck.h">
+      <Filter>HitKeyCheck</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreRanking.h">
+      <Filter>ScoreRanking</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerModel.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCManager.h">
+      <Filter>NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCModel.h">
+      <Filter>NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterState.h">
+      <Filter>CharacterState</Filter>
+    </ClInclude>
+    <ClInclude Include="NPCInput.h">
+      <Filter>NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreManager.h">
+      <Filter>Score</Filter>
+    </ClInclude>
+    <ClInclude Include="Score.h">
+      <Filter>Score</Filter>
+    </ClInclude>
+    <ClInclude Include="MapManager.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="LightManager.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundMusic.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEffect.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaySceneManager.h">
+      <Filter>Scene\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleSceneManager.h">
+      <Filter>Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultSceneManager.h">
+      <Filter>Scene\Reslt</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{9fcd4c3c-e76d-4a8e-ba98-ed12ac2c0847}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{0ff4262f-d74a-4eec-a6bb-8b0fdc55d507}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Light">
+      <UniqueIdentifier>{c4d711bb-144a-446b-b8a3-3aa45204747d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Title">
+      <UniqueIdentifier>{c2cf2dd9-475d-42b4-b331-0324a774123b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Reslt">
+      <UniqueIdentifier>{116b5be7-4c9e-47bb-ab2b-23e3fd36a89d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Play">
+      <UniqueIdentifier>{35cb7675-f10a-4c17-9b1b-692c6fee70ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{f452245c-98ce-4591-945d-301184caf671}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Animation">
+      <UniqueIdentifier>{d8a96311-167d-4737-97b1-58b894f7e1c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\SceneManager">
+      <UniqueIdentifier>{30d8052c-1341-46f3-8e96-34f7bdb8ceaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FPSControll">
+      <UniqueIdentifier>{50313677-9696-41c6-811a-57a1240f6a86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NPC">
+      <UniqueIdentifier>{d9c2c1d1-1088-4c00-89fb-22ee1e297f37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HitKeyCheck">
+      <UniqueIdentifier>{1bef449a-9e7e-430b-bf7e-963e07fb51c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScoreRanking">
+      <UniqueIdentifier>{9b399851-b92a-4116-96df-858f6520e25d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{8527a82a-83cf-4890-9ccd-7bf4a65077fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CharacterState">
+      <UniqueIdentifier>{8fccded6-9f97-4696-a412-719dc3866467}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Score">
+      <UniqueIdentifier>{6bd1ce3c-259e-44c8-a0ef-214f7d79b252}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{2fd2fae0-0877-4ed0-8d82-680852f4f673}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{ef1ce308-a663-417b-b177-1c534201ea4a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
