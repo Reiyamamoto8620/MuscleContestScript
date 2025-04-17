@@ -2,8 +2,8 @@
 #include "iostream"
 #include "vector"
 #include <Windows.h>
-#include <cpprest/http_client.h>
-#include <cpprest/filestream.h>
+#include "cpprest/http_client.h"
+#include "cpprest/filestream.h"
 
 using namespace utility;                    // 文字列変換などの一般的なユーティリティ
 using namespace web;                        // URIのような共通の機能
