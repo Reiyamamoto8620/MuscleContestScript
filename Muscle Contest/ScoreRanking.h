@@ -26,7 +26,7 @@ public:
 	//描画
 	void Draw();
 	//更新
-	void Update(int _requestType, int _nowScore);
+	void Update(HttpRequestType _requestType, int _nowScore);
 
 	/// <summary>
 	/// isTaskEndのゲッター
@@ -60,7 +60,8 @@ private:
 	int rankingFontHandle;			//ランキングのフォントハンドル
 	int titleButtonImg;				//TITLEボタンの画像
 	bool isTaskEnd;					//タスク中かの判定
-	bool isServerAlive;
+	bool isServerAlive;				//サーバーに接続可能かの判定
+	bool isTestEnd;					//サーバー接続テストの終了判定
 
 	////////////////////////
 	//--------定数--------//
@@ -98,6 +99,14 @@ private:
 	const int ThirdScoreColor = GetColor(169, 82, 45);		//3位のスコアカラー
 	const int OtherScoreColor = GetColor(255, 255, 255);	//4位以下のスコアカラー
 	const int ScoreBackColor = GetColor(255, 255, 255);		//スコアの背景のカラー
+
+	const int OfflineTextColor = GetColor(255, 255, 255);	//オフラインモードのカラー
+	const TCHAR* OfflineText = (TCHAR*)"オフラインモード";	//オフラインモードの文字
+	const int OfflineTextPosX = 1920 / 2 -					//オフラインモードのX座標
+		GetDrawStringWidthToHandle(OfflineText,
+			strlen(OfflineText), rankingFontHandle)/2;
+	const int OfflineTextPosY = 1080 / 2 -					//オフラインモードのY座標
+		RankingFontSize / 2;
 
 	//ランキングのインデックス
 	enum class RankingIndex

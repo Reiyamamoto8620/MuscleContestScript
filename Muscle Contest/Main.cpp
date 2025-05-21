@@ -82,7 +82,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			//前回のタスクが終わるまで待機
 			sceneManager->Load(*scoreRanking, *fpsControll,*soundManager);
 			//ネットワークに接続を確認し、スコアをGET
-			scoreRanking->Update(0, scoreManager->GetScore());
+			scoreRanking->Update(Get, scoreManager->GetScore());
 			//タスクが終わるまで待機
 			sceneManager->Load(*scoreRanking, *fpsControll,*soundManager);
 			//タイトルシーン
@@ -105,7 +105,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		//前回のタスクが終わるまで待機
 		sceneManager->Load(*scoreRanking, *fpsControll,*soundManager);
 		//ネットワークの接続を確認し、スコアをPOST
-		scoreRanking->Update(1, scoreManager->GetScore());
+		scoreRanking->Update(Post, scoreManager->GetScore());
 		//リザルトシーン
 		sceneManager->Result(*resultSceneManager, *fpsControll, *cameraManager,
 			*playerManager, *scoreManager, *mapManager, *soundManager);

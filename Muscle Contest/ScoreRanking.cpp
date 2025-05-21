@@ -1,4 +1,5 @@
 #include "DxLib.h"
+#include "Common.h"
 #include <Sensapi.h>
 #include "ScoreRanking.h"
 #pragma comment(lib,"Sensapi.lib")
@@ -12,7 +13,8 @@ ScoreRanking::ScoreRanking() :
 	scoreRankingImg(LoadGraph("Data/Img/Score/ScoreRanking.png")),
 	titleButtonImg(LoadGraph("Data/Img/Score/Title.png")),
 	isTaskEnd(true),
-	isServerAlive(false)
+	isServerAlive(false),
+	isTestEnd(false)
 {
 
 }
@@ -45,51 +47,60 @@ void ScoreRanking::Draw()
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, BlendPalMax);
 	DrawGraph(ScoreRankingImgPosX, ScoreRankingImgPosY, scoreRankingImg, TRUE);
 	DrawGraph(TitlButtonImgPosX, TitlButtonImgPosY, titleButtonImg, TRUE);
-	for (int i = 0; i < RankingMax; i++)
+	if (isServerAlive)
 	{
-		//1位のスコア表示時
-		if (i == (int)RankingIndex::First)
+		for (int i = 0; i < RankingMax; i++)
 		{
-			//1だけ文字幅が異常に小さいため、表示位置から文字幅の半分をずらす
-			//文字列の長さを取得
-			int strLen = strlen("1");
-			//文字列の幅を取得
-			rankingWidth = GetDrawStringWidthToHandle("1", strLen, rankingFontHandle);
-			//1位用のフォントカラーを設定
-			color = FirstScoreColor;
+			//1位のスコア表示時
+			if (i == (int)RankingIndex::First)
+			{
+				//1だけ文字幅が異常に小さいため、表示位置から文字幅の半分をずらす
+				//文字列の長さを取得
+				int strLen = strlen("1");
+				//文字列の幅を取得
+				rankingWidth = GetDrawStringWidthToHandle("1", strLen, rankingFontHandle);
+				//1位用のフォントカラーを設定
+				color = FirstScoreColor;
+			}
+			else
+			{
+				//1位以外の場合は文字幅文ずらす必要はないため、
+				//ずらす文字幅の値を0にする
+				rankingWidth = 0;
+			}
+			//2位のスコア表示時
+			if (i == (int)RankingIndex::Second)
+			{
+				//2位用のフォントカラーを取得
+				color = SecondScoreColor;
+			}
+			//3位のスコア表示時
+			if (i == (int)RankingIndex::Third)
+			{
+				//3位用のフォントカラーを取得
+				color = ThirdScoreColor;
+			}
+			//4位以下のスコア表示時
+			if (i > (int)RankingIndex::Third)
+			{
+				//4位用のフォントカラーを取得
+				color = OtherScoreColor;
+			}
+			//順位の表示
+			DrawFormatStringToHandle(RankingPosX + rankingWidth / RankingWidthQuarterNum,
+				i * RankingPosShiftY + RankingPosY, color, rankingFontHandle, "%d", i + 1);
+			DrawStringToHandle(RankingPlacePosX, i * RankingPosShiftY + RankingPosY,
+				"位", color, rankingFontHandle);
+			//スコアの表示
+			DrawFormatStringToHandle(RankingScorePosX, i * RankingPosShiftY + RankingPosY,
+				color, rankingFontHandle, "%d", ranking[i]);
 		}
-		else
-		{
-			//1位以外の場合は文字幅文ずらす必要はないため、
-			//ずらす文字幅の値を0にする
-			rankingWidth = 0;
-		}
-		//2位のスコア表示時
-		if (i == (int)RankingIndex::Second)
-		{
-			//2位用のフォントカラーを取得
-			color = SecondScoreColor;
-		}
-		//3位のスコア表示時
-		if (i == (int)RankingIndex::Third)
-		{
-			//3位用のフォントカラーを取得
-			color = ThirdScoreColor;
-		}
-		//4位以下のスコア表示時
-		if (i > (int)RankingIndex::Third)
-		{
-			//4位用のフォントカラーを取得
-			color = OtherScoreColor;
-		}
-		//順位の表示
-		DrawFormatStringToHandle(RankingPosX + rankingWidth / RankingWidthQuarterNum,
-			i * RankingPosShiftY + RankingPosY, color, rankingFontHandle, "%d", i + 1);
-		DrawStringToHandle(RankingPlacePosX, i * RankingPosShiftY + RankingPosY,
-			"位", color, rankingFontHandle);
-		//スコアの表示
-		DrawFormatStringToHandle(RankingScorePosX, i * RankingPosShiftY + RankingPosY,
-			color, rankingFontHandle, "%d", ranking[i]);
+	}
+	//サーバーに接続できないときに実行
+	else
+	{
+		//オフラインモードを描画する
+		DrawStringToHandle(OfflineTextPosX, OfflineTextPosY,OfflineText,OfflineTextColor, rankingFontHandle);
 	}
 }
 /// <summary>
@@ -106,26 +117,40 @@ pplx::task<void> ScoreRanking::GetRanking()
 			return client.request(methods::GET);
 		})
 		//上のリターンを取得
-			.then([](http_response response)
+			.then([this](http_response response)
 				{
 					// ステータスコード判定
 					if (response.status_code() == status_codes::OK)
 					{
-						// レスポンスをJSONとして解析する
+						//サーバーの接続判定をtrueに
+						isServerAlive = true;
+						// レスポンスをJSONとして解析する.　
 						return response.extract_json();
+					}
+					else
+					{
+						//サーバーの接続判定をfalseに
+						isServerAlive = false;
+						//空の JSON を返す
+						return pplx::task_from_result(json::value::object()); // 空のオブジェクトで続行
 					}
 				})
 			//上のリターンを取得
 					.then([this](json::value json)
 						{
-							//ランキングの中に0が入っているため中身を削除
-							ranking.clear();
-							// ほしいもののkeyから値だけ取得する
-							ranking.push_back(json[L"First"].as_integer());
-							ranking.push_back(json[L"Second"].as_integer());
-							ranking.push_back(json[L"Third"].as_integer());
-							ranking.push_back(json[L"Fourth"].as_integer());
-							ranking.push_back(json[L"Fifth"].as_integer());
+							// "Message" キーが存在するか確認してから表示
+							if (json.has_field(L"Message"))
+							{
+								//ランキングの中に0が入っているため中身を削除
+								ranking.clear();
+								// ほしいもののkeyから値だけ取得する
+								ranking.push_back(json[L"First"].as_integer());
+								ranking.push_back(json[L"Second"].as_integer());
+								ranking.push_back(json[L"Third"].as_integer());
+								ranking.push_back(json[L"Fourth"].as_integer());
+								ranking.push_back(json[L"Fifth"].as_integer());
+							}
+							//タスクの終了判定をtrueに
 							isTaskEnd = true;
 						});
 }
@@ -149,27 +174,28 @@ pplx::task<void> ScoreRanking::PostRanking(int _nowScore)
 			return client.request(methods::POST, L"", postData.serialize(), L"application/json");
 		})
 		//上のリターンを取得
-			.then([](http_response  response)
+			.then([this](http_response  response)
 				{
 					// ステータスコード判定
 					if (response.status_code() == status_codes::OK)
 					{
-						//レスポンスをJSONに解析
-						return response.extract_json();
+						//サーバーの接続判定をtrueに
+						isServerAlive = true;
 					}
-				})
-			//上のリターンを取得
-					.then([this](json::value json)
-						{
-							//Keyを指定して値を表示
-							std::wcout << json[L"Message"].as_string() << std::endl;
-							isTaskEnd = true;
-						});
+					//ダメだった場合実行
+					else
+					{
+						//サーバーの接続判定をfalseに
+						isServerAlive = false;
+					}
+					//タスクの終了判定をtrueに
+					isTaskEnd = true;
+				});
 }
 /// <summary>
 /// 更新
 /// </summary>
-void ScoreRanking::Update(int _requestType,int _nowScore)
+void ScoreRanking::Update(HttpRequestType _requestType, int _nowScore)
 {
 	DWORD networkType;
 	//ネットワークに接続されているか判定
@@ -180,25 +206,23 @@ void ScoreRanking::Update(int _requestType,int _nowScore)
 		{
 			//タスク終了判定をfalse
 			isTaskEnd = false;
-			
 			//Getを開始
-			if (_requestType == 0)
+			if (_requestType == Get)
 			{
 				GetRanking();
 			}
 			//Postを開始
-			else if (_requestType == 1)
+			else if (_requestType == Post)
 			{
 				PostRanking(_nowScore);
 			}
-
 		}
 		catch (const std::exception& e)
 		{
 			//Getが失敗した場合
 			std::cout << "Error " << e.what() << std::endl;
 			//タスク終了判定をtrue
-			isTaskEnd= true;
+			isTaskEnd = true;
 		}
 	}
 }
