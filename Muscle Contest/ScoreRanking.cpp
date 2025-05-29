@@ -139,7 +139,7 @@ pplx::task<void> ScoreRanking::GetRanking()
 					.then([this](json::value json)
 						{
 							// "Message" キーが存在するか確認してから表示
-							if (json.has_field(L"Message"))
+							if (json.has_field(L"First"))
 							{
 								//ランキングの中に0が入っているため中身を削除
 								ranking.clear();

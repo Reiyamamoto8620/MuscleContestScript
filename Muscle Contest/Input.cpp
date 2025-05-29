@@ -46,22 +46,22 @@ void Input::GetInputKey(bool _isInput)
 	if (_isInput)
 	{
 		//è„ì¸óÕ
-		if (GetJoypadInputState(DX_INPUT_KEY_PAD1)&PAD_INPUT_UP)
+		if (GetJoypadInputState(DX_INPUT_KEY_PAD1)&PAD_INPUT_UP || CheckHitKey(KEY_INPUT_W))
 		{
 			isUp = true;
 		}
 		//â∫ì¸óÕ
-		if (GetJoypadInputState(DX_INPUT_KEY_PAD1) & PAD_INPUT_DOWN)
+		if (GetJoypadInputState(DX_INPUT_KEY_PAD1) & PAD_INPUT_DOWN || CheckHitKey(KEY_INPUT_S))
 		{
 			isDown = true;
 		}
 		//âEì¸óÕ
-		if (GetJoypadInputState(DX_INPUT_KEY_PAD1) & PAD_INPUT_RIGHT)
+		if (GetJoypadInputState(DX_INPUT_KEY_PAD1) & PAD_INPUT_RIGHT || CheckHitKey(KEY_INPUT_D))
 		{
 			isRight = true;
 		}
 		//ç∂ì¸óÕ
-		if (GetJoypadInputState(DX_INPUT_KEY_PAD1) & PAD_INPUT_LEFT)
+		if (GetJoypadInputState(DX_INPUT_KEY_PAD1) & PAD_INPUT_LEFT || CheckHitKey(KEY_INPUT_A))
 		{
 			isLeft = true;
 		}
